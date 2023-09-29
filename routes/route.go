@@ -3,6 +3,7 @@ package routes
 import (
 	AuthController "batch11_golang_pos/controllers/auth"
 	CategoryController "batch11_golang_pos/controllers/category"
+	ProductController "batch11_golang_pos/controllers/product"
 	UserController "batch11_golang_pos/controllers/user"
 	"os"
 
@@ -27,4 +28,10 @@ func InitRoutes(e *echo.Echo) {
 	AuthGroup.POST("/categories", CategoryController.CreateCategory)
 	AuthGroup.PUT("/categories/:id", CategoryController.UpdateCategory)
 	AuthGroup.DELETE("/categories/:id", CategoryController.DeleteCategory)
+
+	AuthGroup.GET("/products", ProductController.GetAllProduct)
+	AuthGroup.GET("/products/:id", ProductController.GetFirstProduct)
+	AuthGroup.POST("/products", ProductController.CreateProduct)
+	AuthGroup.PUT("/products/:id", ProductController.UpdateProduct)
+	AuthGroup.DELETE("/products/:id", ProductController.DeleteProduct)
 }
