@@ -2,7 +2,7 @@ package main
 
 import (
 	"batch11_golang_pos/configs"
-	"net/http"
+	"batch11_golang_pos/routes"
 	"os"
 
 	"github.com/joho/godotenv"
@@ -13,12 +13,14 @@ func main() {
 	loadEnv()
 	configs.InitDatabase()
 	e := echo.New()
-
-	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Hello, World!")
-	})
-
+	routes.InitRoutes(e)
 	port := os.Getenv("PORT")
+	appEnv := os.Getenv("APP_ENV")
+
+	if appEnv == "local" {
+		port = "8000"
+	}
+
 	e.Start(":" + port)
 }
 
