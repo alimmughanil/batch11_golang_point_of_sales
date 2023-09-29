@@ -5,7 +5,6 @@ import (
 	"batch11_golang_pos/routes"
 	"os"
 
-	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"
 )
 
@@ -22,11 +21,4 @@ func main() {
 	}
 
 	e.Start(":" + port)
-}
-
-func loadEnv() {
-	err := godotenv.Load()
-	if err != nil {
-		panic("Error loading .env file")
-	}
 }
