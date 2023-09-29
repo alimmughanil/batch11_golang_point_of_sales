@@ -2,6 +2,7 @@ package routes
 
 import (
 	AuthController "batch11_golang_pos/controllers/auth"
+	CategoryController "batch11_golang_pos/controllers/category"
 	UserController "batch11_golang_pos/controllers/user"
 	"os"
 
@@ -20,4 +21,10 @@ func InitRoutes(e *echo.Echo) {
 	AuthGroup.Use(echojwt.JWT([]byte(os.Getenv("JWT_SECRET"))))
 	AuthGroup.GET("/users", UserController.GetAllUser)
 	AuthGroup.GET("/users/:id", UserController.GetFirstUser)
+
+	AuthGroup.GET("/categories", CategoryController.GetAllCategory)
+	AuthGroup.GET("/categories/:id", CategoryController.GetFirstCategory)
+	AuthGroup.POST("/categories", CategoryController.CreateCategory)
+	AuthGroup.PUT("/categories/:id", CategoryController.UpdateCategory)
+	AuthGroup.DELETE("/categories/:id", CategoryController.DeleteCategory)
 }
