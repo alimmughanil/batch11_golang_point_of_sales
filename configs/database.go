@@ -23,4 +23,6 @@ func InitDatabase() {
 	if err != nil {
 		panic("Error init database")
 	}
+
+	initMigrate()
 }
